@@ -4,8 +4,15 @@ const Controller = require('egg').Controller;
 
 class HomeController extends Controller {
   async index() {
-    const { ctx } = this;
-    ctx.body = 'hi, egg';
+    let {model,service} = this.ctx
+    await service.getmovie.movies()
+    this.ctx.body = 'hello ';
+  }
+
+  async movieList(){
+    let {model} = this.ctx
+    let list = await model.Movie.find({})
+    this.ctx.body = list
   }
 }
 
